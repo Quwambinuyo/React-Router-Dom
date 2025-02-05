@@ -1,4 +1,4 @@
-import { Routes, ROute, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Navbar from "./components/Navbar";
@@ -7,6 +7,9 @@ import NotFound from "./components/NotFound";
 import Products from "./components/Products";
 import FeaturedProducts from "./components/FeaturedProducts";
 import NewProducts from "./components/NewProducts";
+import Users from "./components/Users";
+import UserDetails from "./components/UserDetails";
+import Admin from "./components/Admin";
 
 function App() {
   return (
@@ -16,14 +19,18 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="order-summary" element={<OrderSummary />} />
-        <Route path="*" element={<NotFound />} />
+
         <Route path="products" element={<Products />}>
           <Route path="featured" element={<FeaturedProducts />} />
-          <Route index element={<FeaturedProducts />} />
-        </Route>
-        <Route path="products" element={<Products />}>
           <Route path="new" element={<NewProducts />} />
+          <Route index element={<FeaturedProducts />} />{" "}
         </Route>
+
+        <Route path="users" element={<Users />}>
+          <Route path=":userId" element={<UserDetails />} />
+          <Route path="admin" element={<Admin />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
